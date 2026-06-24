@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Mahammad Farhan</title>
+  <meta name="description" content="Background, skills, and working approach of Mahammad Farhan, a developer building practical business software for inventory, invoicing, and customer management." />
+  <meta name="author" content="Mahammad Farhan" />
+  <link rel="canonical" href="https://example.com/about.html" />
+
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="About — Mahammad Farhan" />
+  <meta property="og:description" content="Background, skills, and working approach of Mahammad Farhan." />
+  <meta property="og:url" content="https://example.com/about.html" />
+
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="topbar">
+    <a class="topbar__mark" href="index.html">Farhan<span class="visually-hidden"> — home</span></a>
+    <button type="button" class="topbar__toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+  </div>
+
+  <div class="shell">
+    <header class="ledger" id="primary-nav" data-open="false">
+      <a class="ledger__mark" href="index.html">
+        Mahammad<br />Farhan
+        <span>Software developer</span>
+      </a>
+
+      <nav aria-label="Primary">
+        <ul class="ledger__index">
+          <li><a href="index.html"><span class="ledger__num">01</span> Home</a></li>
+          <li><a href="about.html" aria-current="page"><span class="ledger__num">02</span> About</a></li>
+          <li><a href="projects.html"><span class="ledger__num">03</span> Projects</a></li>
+          <li><a href="contact.html"><span class="ledger__num">04</span> Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="ledger__footer">
+        <p>Based in Vijayawada, Andhra Pradesh, IN.</p>
+        <ul class="ledger__social">
+          <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub<span class="visually-hidden"> (opens in new tab)</span></a></li>
+          <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in new tab)</span></a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main class="main" id="main-content">
+      <article aria-labelledby="about-heading">
+        <p class="eyebrow">02 — About</p>
+        <h1 id="about-heading">I like tools that disappear into someone's workday.</h1>
+        <p class="lede">
+          The best feedback I get isn't "this looks great" — it's that someone stopped
+          thinking about the software at all and just got their invoicing done.
+        </p>
+
+        <section aria-labelledby="approach-heading">
+          <h2 id="approach-heading">How I work</h2>
+          <p>
+            I usually start with the paper trail — the notebook, the WhatsApp messages,
+            the spreadsheet someone built five years ago and never stopped patching.
+            That's where the real requirements live. From there I build something
+            narrow enough to actually finish and sturdy enough to survive daily use:
+            stock counts that don't drift, invoices that calculate tax correctly the
+            first time, and dashboards that answer the question someone actually asked.
+          </p>
+        </section>
+
+        <section aria-labelledby="skills-heading">
+          <h2 id="skills-heading">Skills &amp; tools</h2>
+          <ul>
+            <li>HTML5, CSS, and JavaScript — including single-file applications built for low-friction deployment</li>
+            <li>Front-end UI work: dashboards, data tables, animated interfaces, canvas-rendered charts</li>
+            <li>Business logic: stock/inventory tracking, GST-compliant invoicing, scheduling and notifications</li>
+            <li>Accessibility-minded markup and form design</li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="values-heading">
+          <h2 id="values-heading">What I care about</h2>
+          <dl>
+            <dt>Clarity over cleverness</dt>
+            <dd>If a shop owner can't explain how a feature works after one demo, it's too complicated.</dd>
+            <dt>Data that holds up</dt>
+            <dd>Stock counts and invoice totals have to be right every time, not most of the time.</dd>
+            <dt>Software that respects attention</dt>
+            <dd>Interfaces should be quick to use and easy to come back to after a busy week.</dd>
+          </dl>
+        </section>
+      </article>
+
+      <footer class="page-foot">
+        <p>&copy; 2026 Mahammad Farhan.</p>
+        <p><a class="inline-link" href="projects.html">Next: Projects &rarr;</a></p>
+      </footer>
+    </main>
+  </div>
+
+  <script src="assets/js/nav.js" defer></script>
+</body>
+</html>

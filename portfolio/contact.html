@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Mahammad Farhan</title>
+  <meta name="description" content="Get in touch with Mahammad Farhan about software projects, collaborations, or business tools for inventory and invoicing." />
+  <meta name="author" content="Mahammad Farhan" />
+  <link rel="canonical" href="https://example.com/contact.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contact — Mahammad Farhan" />
+  <meta property="og:description" content="Get in touch with Mahammad Farhan." />
+  <meta property="og:url" content="https://example.com/contact.html" />
+
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="topbar">
+    <a class="topbar__mark" href="index.html">Farhan<span class="visually-hidden"> — home</span></a>
+    <button type="button" class="topbar__toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+  </div>
+
+  <div class="shell">
+    <header class="ledger" id="primary-nav" data-open="false">
+      <a class="ledger__mark" href="index.html">
+        Mahammad<br />Farhan
+        <span>Software developer</span>
+      </a>
+
+      <nav aria-label="Primary">
+        <ul class="ledger__index">
+          <li><a href="index.html"><span class="ledger__num">01</span> Home</a></li>
+          <li><a href="about.html"><span class="ledger__num">02</span> About</a></li>
+          <li><a href="projects.html"><span class="ledger__num">03</span> Projects</a></li>
+          <li><a href="contact.html" aria-current="page"><span class="ledger__num">04</span> Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="ledger__footer">
+        <p>Based in Vijayawada, Andhra Pradesh, IN.</p>
+        <ul class="ledger__social">
+          <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub<span class="visually-hidden"> (opens in new tab)</span></a></li>
+          <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in new tab)</span></a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main class="main" id="main-content">
+      <section aria-labelledby="contact-heading">
+        <p class="eyebrow">04 — Contact</p>
+        <h1 id="contact-heading">Get in touch</h1>
+        <p class="lede">
+          Tell me a bit about what you're trying to build. I read every message and
+          reply within a couple of days.
+        </p>
+
+        <!--
+          Form accessibility notes:
+          - Every control has a programmatically associated <label> (for/id).
+          - Required fields use both the visual asterisk and aria-required,
+            so the requirement is conveyed in more than one sensory channel.
+          - novalidate + JS validation lets us control error placement and
+            announce errors via the aria-live status region below, while
+            still keeping native required/type attributes as a fallback if
+            JS fails to load.
+          - Error text is linked to its input with aria-describedby, so a
+            screen reader announces the error when the field receives focus.
+          - The whole form is reachable and operable by keyboard alone, in
+            a single logical tab order with no positive tabindex values.
+        -->
+        <form id="contact-form" novalidate aria-describedby="form-instructions">
+          <p id="form-instructions" class="hint">
+            Fields marked with an asterisk (*) are required.
+          </p>
+
+          <div class="form-grid">
+            <div class="field" data-invalid="false">
+              <label for="name">Full name <span aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                autocomplete="name"
+                required
+                aria-required="true"
+                aria-describedby="name-error"
+              />
+              <p class="error" id="name-error" role="alert"></p>
+            </div>
+
+            <div class="field" data-invalid="false">
+              <label for="email">Email address <span aria-hidden="true">*</span></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                autocomplete="email"
+                required
+                aria-required="true"
+                aria-describedby="email-hint email-error"
+              />
+              <p class="hint" id="email-hint">Used only to reply to your message.</p>
+              <p class="error" id="email-error" role="alert"></p>
+            </div>
+
+            <fieldset data-invalid="false">
+              <legend>Reason for contact <span aria-hidden="true">*</span></legend>
+              <div class="radio-row">
+                <span class="radio-option">
+                  <input type="radio" id="reason-project" name="reason" value="project" required />
+                  <label for="reason-project">New project</label>
+                </span>
+                <span class="radio-option">
+                  <input type="radio" id="reason-collab" name="reason" value="collaboration" />
+                  <label for="reason-collab">Collaboration</label>
+                </span>
+                <span class="radio-option">
+                  <input type="radio" id="reason-other" name="reason" value="other" />
+                  <label for="reason-other">Other</label>
+                </span>
+              </div>
+              <p class="error" id="reason-error" role="alert"></p>
+            </fieldset>
+
+            <div class="field" data-invalid="false">
+              <label for="message">Message <span aria-hidden="true">*</span></label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                aria-required="true"
+                aria-describedby="message-error"
+                rows="6"
+              ></textarea>
+              <p class="error" id="message-error" role="alert"></p>
+            </div>
+
+            <div>
+              <button type="submit" class="btn">Send message</button>
+            </div>
+          </div>
+
+          <!--
+            aria-live="polite" + role="status": announces submission outcome
+            to screen reader users without moving focus unexpectedly, while
+            tabindex="-1" lets JS move focus here on success for sighted
+            keyboard users to get a clear confirmation point.
+          -->
+          <p
+            id="form-status"
+            class="form-status"
+            role="status"
+            aria-live="polite"
+            tabindex="-1"
+            data-show="false"
+          ></p>
+        </form>
+      </section>
+
+      <section aria-labelledby="other-ways-heading">
+        <h2 id="other-ways-heading">Other ways to reach me</h2>
+        <ul>
+          <li>Email: <a class="inline-link" href="mailto:hello@example.com">hello@example.com</a></li>
+          <li>GitHub: <a class="inline-link" href="https://github.com/" target="_blank" rel="noopener noreferrer">github.com<span class="visually-hidden"> (opens in new tab)</span></a></li>
+          <li>LinkedIn: <a class="inline-link" href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">linkedin.com<span class="visually-hidden"> (opens in new tab)</span></a></li>
+        </ul>
+      </section>
+
+      <footer class="page-foot">
+        <p>&copy; 2026 Mahammad Farhan.</p>
+        <p><a class="inline-link" href="index.html">Back to Home &rarr;</a></p>
+      </footer>
+    </main>
+  </div>
+
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/contact-form.js" defer></script>
+</body>
+</html>

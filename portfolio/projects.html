@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Mahammad Farhan</title>
+  <meta name="description" content="Selected projects by Mahammad Farhan, including a business management web application for inventory, invoicing, and customer notifications." />
+  <meta name="author" content="Mahammad Farhan" />
+  <link rel="canonical" href="https://example.com/projects.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Projects — Mahammad Farhan" />
+  <meta property="og:description" content="Selected projects by Mahammad Farhan." />
+  <meta property="og:url" content="https://example.com/projects.html" />
+
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="topbar">
+    <a class="topbar__mark" href="index.html">Farhan<span class="visually-hidden"> — home</span></a>
+    <button type="button" class="topbar__toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+  </div>
+
+  <div class="shell">
+    <header class="ledger" id="primary-nav" data-open="false">
+      <a class="ledger__mark" href="index.html">
+        Mahammad<br />Farhan
+        <span>Software developer</span>
+      </a>
+
+      <nav aria-label="Primary">
+        <ul class="ledger__index">
+          <li><a href="index.html"><span class="ledger__num">01</span> Home</a></li>
+          <li><a href="about.html"><span class="ledger__num">02</span> About</a></li>
+          <li><a href="projects.html" aria-current="page"><span class="ledger__num">03</span> Projects</a></li>
+          <li><a href="contact.html"><span class="ledger__num">04</span> Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="ledger__footer">
+        <p>Based in Vijayawada, Andhra Pradesh, IN.</p>
+        <ul class="ledger__social">
+          <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub<span class="visually-hidden"> (opens in new tab)</span></a></li>
+          <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in new tab)</span></a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main class="main" id="main-content">
+      <section aria-labelledby="projects-heading">
+        <p class="eyebrow">03 — Projects</p>
+        <h1 id="projects-heading">Selected work</h1>
+        <p class="lede">A short list of things I've built and shipped, focused on real operational use.</p>
+
+        <h2 class="visually-hidden" id="entries-heading">Project list</h2>
+        <ul class="entry-list" aria-labelledby="entries-heading">
+          <li class="entry">
+            <span class="entry__index">01</span>
+            <div class="entry__body">
+              <h3>NexaCore — business management web app</h3>
+              <p>
+                A single-file web application for a power solutions business dealing
+                in inverters and two-wheeler batteries. Includes dual admin/customer
+                login portals, product and stock management, a GST-aware invoice
+                generator, automated customer notification scheduling, analytics
+                dashboards with canvas-rendered charts, and a public homepage with
+                enquiry forms.
+              </p>
+              <ul class="entry__tags">
+                <li>HTML/CSS/JS</li>
+                <li>Inventory</li>
+                <li>Invoicing</li>
+                <li>Dashboards</li>
+              </ul>
+            </div>
+            <span class="entry__link"><a class="inline-link" href="#nexacore-detail">Details &darr;</a></span>
+          </li>
+
+          <li class="entry">
+            <span class="entry__index">02</span>
+            <div class="entry__body">
+              <h3>Accessible contact &amp; enquiry forms</h3>
+              <p>
+                Reusable, tab-navigable form patterns with inline validation and
+                screen-reader-friendly error handling, built for public-facing
+                business sites.
+              </p>
+              <ul class="entry__tags">
+                <li>Accessibility</li>
+                <li>Forms</li>
+                <li>ARIA</li>
+              </ul>
+            </div>
+            <span class="entry__link"><a class="inline-link" href="contact.html">See it live &rarr;</a></span>
+          </li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="nexacore-detail-heading" id="nexacore-detail">
+        <h2 id="nexacore-detail-heading">NexaCore, in more detail</h2>
+        <p>
+          NexaCore was built as a single deployable HTML file to keep hosting and
+          handoff simple for a small operations team. It covers the day-to-day shape
+          of the business: tracking which inverter and battery models are in stock,
+          producing GST-compliant invoices at the point of sale, and scheduling
+          follow-up notifications so customers don't have to be chased manually.
+        </p>
+        <p>
+          On the interface side, the build includes subtle 3D card tilt and parallax
+          effects, scroll-reveal animation for longer pages, and canvas-rendered
+          charts for the analytics dashboard — balanced against keeping the core
+          workflows fast and distraction-free for daily use.
+        </p>
+      </section>
+
+      <footer class="page-foot">
+        <p>&copy; 2026 Mahammad Farhan.</p>
+        <p><a class="inline-link" href="contact.html">Next: Contact &rarr;</a></p>
+      </footer>
+    </main>
+  </div>
+
+  <script src="assets/js/nav.js" defer></script>
+</body>
+</html>
