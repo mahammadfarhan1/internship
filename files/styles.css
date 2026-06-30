@@ -1,0 +1,393 @@
+/* =========================================================
+   DESIGN TOKENS
+   Carried over from the portfolio site's token system so this
+   tool shares the same ledger/paper identity. Light theme only
+   here — this is a focused utility, not the multi-page site,
+   so dark-mode theming wasn't asked for.
+   ========================================================= */
+:root {
+  --color-ink: #0e1116;
+  --color-paper: #f7f5f0;
+  --color-paper-dim: #efece4;
+  --color-signal: #3d5aff;
+  --color-signal-dark: #2a3fc0;
+  --color-stone: #6f6a5d;
+  --color-stone-light: #8a8578;
+  --color-border: #d8d3c6;
+  --color-danger: #c2401f;
+  --color-surface: #ffffff;
+  --color-stamp: #b8392f;
+  --color-success: #2f7a4f;
+
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+
+  --step--1: clamp(0.83rem, 0.8rem + 0.1vw, 0.9rem);
+  --step-0: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
+  --step-1: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+  --step-2: clamp(1.6rem, 1.4rem + 0.8vw, 2.1rem);
+  --step-3: clamp(2.1rem, 1.8rem + 1.4vw, 3rem);
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+
+  --radius: 3px;
+  --motion-fast: 160ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: var(--space-4) var(--space-2);
+}
+button { font: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--color-signal);
+  outline-offset: 3px;
+  border-radius: var(--radius);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-2);
+  top: -3rem;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  z-index: 100;
+  transition: top var(--motion-fast);
+}
+.skip-link:focus { top: var(--space-2); }
+
+/* =========================================================
+   THE SHEET — single ledger card, the whole app
+   ========================================================= */
+main {
+  width: 100%;
+  max-width: 38rem;
+}
+
+.sheet {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: var(--space-3);
+  position: relative;
+  box-shadow: 0 24px 48px -24px rgba(14, 17, 22, 0.25);
+}
+
+/* Carbon-copy stripe — same device used on the portfolio's
+   contact form, so the two projects read as one family. */
+.sheet::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background: var(--color-stamp);
+  border-radius: 4px 0 0 4px;
+}
+
+@media (min-width: 600px) {
+  .sheet { padding: var(--space-4); }
+}
+
+.sheet__head {
+  margin-bottom: var(--space-3);
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+  margin: 0 0 0.25rem;
+}
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+  line-height: 1.1;
+}
+.sheet__sub {
+  color: var(--color-stone);
+  font-size: var(--step--1);
+  margin: 0;
+  max-width: 30rem;
+}
+
+/* =========================================================
+   NEW TASK FORM — Flexbox for local alignment of input + button
+   ========================================================= */
+.entry-form {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: var(--space-3);
+}
+.entry-form input[type="text"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  padding: 0.7rem 0.2rem;
+  border: none;
+  border-bottom: 1.5px solid var(--color-border);
+  background: transparent;
+  color: var(--color-ink);
+}
+.entry-form input[type="text"]:focus-visible {
+  border-bottom-color: var(--color-signal);
+  border-bottom-width: 2.5px;
+  outline-offset: 2px;
+}
+.entry-form input[type="text"]::placeholder {
+  color: var(--color-stone-light);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.02em;
+  border: 1.5px solid var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--motion-fast), transform var(--motion-fast);
+  white-space: nowrap;
+}
+.btn:hover { background: var(--color-signal-dark); border-color: var(--color-signal-dark); }
+.btn:active { transform: translateY(1px); }
+.btn--ghost {
+  background: transparent;
+  color: var(--color-ink);
+}
+.btn--ghost:hover { background: var(--color-ink); color: var(--color-paper); }
+.btn--small { padding: 0.5rem 0.85rem; font-size: 0.78rem; }
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+.btn:disabled:hover { background: var(--color-ink); border-color: var(--color-ink); }
+
+/* =========================================================
+   FILTER TABS — Flexbox row, scrollable on very narrow screens
+   ========================================================= */
+.filter-bar {
+  display: flex;
+  gap: 0.4rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-2);
+  padding-bottom: var(--space-2);
+  overflow-x: auto;
+}
+.filter-tab {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  background: transparent;
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  color: var(--color-stone);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  transition: color var(--motion-fast), border-color var(--motion-fast), background var(--motion-fast);
+}
+.filter-tab:hover {
+  color: var(--color-ink);
+}
+.filter-tab[aria-selected="true"] {
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+  background: var(--color-paper-dim);
+  font-weight: 600;
+}
+.filter-tab__count {
+  font-size: 0.7rem;
+  background: var(--color-border);
+  color: var(--color-ink);
+  border-radius: 999px;
+  padding: 0.05rem 0.4rem;
+  min-width: 1.4em;
+  text-align: center;
+}
+.filter-tab[aria-selected="true"] .filter-tab__count {
+  background: var(--color-signal);
+  color: #fff;
+}
+
+/* =========================================================
+   TASK LIST
+   ========================================================= */
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.task {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed var(--color-border);
+  animation: task-in 180ms ease;
+}
+.task:last-child { border-bottom: none; }
+
+@keyframes task-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.task__main {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.task__checkbox {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+  accent-color: var(--color-signal);
+  cursor: pointer;
+}
+
+.task__label {
+  cursor: pointer;
+  overflow-wrap: anywhere;
+  padding-top: 0.05rem;
+}
+
+/* Completed state: struck through with the stamp color, like a
+   line item crossed off a ledger sheet rather than just greyed
+   out — keeps the "paper" metaphor consistent. */
+.task.is-completed .task__label {
+  text-decoration: line-through;
+  text-decoration-color: var(--color-stamp);
+  text-decoration-thickness: 1.5px;
+  color: var(--color-stone);
+}
+
+.task__actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+.task__edit,
+.task__delete {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.3rem 0.55rem;
+  color: var(--color-stone);
+  cursor: pointer;
+  transition: color var(--motion-fast), border-color var(--motion-fast);
+}
+.task__edit:hover { color: var(--color-signal-dark); border-color: var(--color-signal-dark); }
+.task__delete:hover { color: var(--color-danger); border-color: var(--color-danger); }
+
+/* Inline edit mode: label swaps for a text input, in place,
+   rather than opening a modal — keeps editing low-friction. */
+.task.is-editing .task__label { display: none; }
+.task__edit-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  border: none;
+  border-bottom: 1.5px solid var(--color-signal);
+  background: transparent;
+  padding: 0.05rem 0;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--color-stone-light);
+  font-size: var(--step--1);
+  padding: var(--space-4) 0;
+  margin: 0;
+}
+
+/* =========================================================
+   FOOTER — running tally line
+   ========================================================= */
+.sheet__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  flex-wrap: wrap;
+}
+.remaining-summary {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--color-stone);
+  margin: 0;
+}
+
+/* =========================================================
+   RESPONSIVE — mobile-first; this single component just needs
+   a bit more breathing room once there's space for it.
+   ========================================================= */
+@media (min-width: 600px) {
+  body { padding: var(--space-5) var(--space-3); }
+  h1 { font-size: var(--step-3); }
+}

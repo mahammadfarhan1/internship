@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Daily Ledger — Task Tracker</title>
+  <meta name="description" content="A client-side to-do list with full CRUD, filtering, and automatic localStorage persistence." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+    <div class="sheet">
+      <header class="sheet__head">
+        <p class="eyebrow">Daily Ledger</p>
+        <h1>Today's tasks</h1>
+        <p class="sheet__sub">Entries save automatically — close the tab, come back, they're still here.</p>
+      </header>
+
+      <!--
+        New-task form: a real <form> so Enter submits naturally and
+        the browser's built-in validation (required) backs up the JS.
+        novalidate is intentionally NOT set here, since there's only
+        one simple required field and native validation is sufficient
+        — no custom error UI needed for this one.
+      -->
+      <form id="new-task-form" class="entry-form" autocomplete="off">
+        <label for="new-task-input" class="visually-hidden">New task description</label>
+        <input
+          type="text"
+          id="new-task-input"
+          name="task"
+          placeholder="Write a new line item…"
+          maxlength="200"
+          required
+        />
+        <button type="submit" class="btn">
+          <span aria-hidden="true">+</span> Add
+        </button>
+      </form>
+
+      <!--
+        Filter tabs: implements the WAI-ARIA Tabs pattern with
+        automatic activation — arrow keys both move focus AND
+        switch the active filter (handled in app.js), Home/End
+        jump to the first/last tab. Only the selected tab has
+        tabindex="0"; the other two are tabindex="-1" so a single
+        Tab keypress moves focus past the whole group, the same
+        way a native <select> or radio group behaves.
+      -->
+      <div class="filter-bar" role="tablist" aria-label="Filter tasks">
+        <button type="button" class="filter-tab" data-filter="all" role="tab" aria-selected="true" tabindex="0" id="tab-all">
+          All <span class="filter-tab__count" id="count-all">0</span>
+        </button>
+        <button type="button" class="filter-tab" data-filter="active" role="tab" aria-selected="false" tabindex="-1" id="tab-active">
+          Active <span class="filter-tab__count" id="count-active">0</span>
+        </button>
+        <button type="button" class="filter-tab" data-filter="completed" role="tab" aria-selected="false" tabindex="-1" id="tab-completed">
+          Completed <span class="filter-tab__count" id="count-completed">0</span>
+        </button>
+      </div>
+
+      <!--
+        Task list: populated entirely by JS. role="list" is a safety
+        net — some screen reader/CSS combinations strip the implicit
+        list semantics from <ul> when list-style is set to none.
+      -->
+      <ul id="task-list" class="task-list" role="list" aria-live="polite" aria-label="Tasks">
+        <!-- task <li> elements are created dynamically by app.js -->
+      </ul>
+
+      <p id="empty-state" class="empty-state" hidden>
+        Nothing here yet. Add your first task above.
+      </p>
+
+      <footer class="sheet__foot">
+        <p id="remaining-summary" class="remaining-summary" role="status" aria-live="polite">
+          0 tasks remaining
+        </p>
+        <button type="button" id="clear-completed" class="btn btn--ghost btn--small">
+          Clear completed
+        </button>
+      </footer>
+    </div>
+
+    <!--
+      Template for a single task row. Using a <template> element means
+      the browser parses this markup once and never renders it directly
+      — app.js clones its content for every task, which keeps DOM
+      creation logic out of string concatenation entirely.
+    -->
+    <template id="task-template">
+      <li class="task" data-id="">
+        <div class="task__main">
+          <input type="checkbox" class="task__checkbox" id="" />
+          <label class="task__label" for=""></label>
+        </div>
+        <div class="task__actions">
+          <button type="button" class="task__edit" aria-label="Edit task">Edit</button>
+          <button type="button" class="task__delete" aria-label="Delete task">Delete</button>
+        </div>
+      </li>
+    </template>
+  </main>
+
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>
