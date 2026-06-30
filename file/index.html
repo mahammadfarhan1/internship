@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Ledger — Live Weather Dashboard</title>
+  <meta name="description" content="Search any city for live weather conditions and a short forecast, powered by the Open-Meteo API." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="main-content">
+    <div class="sheet">
+      <header class="sheet__head">
+        <p class="eyebrow">Weather Ledger</p>
+        <h1>Look up the weather</h1>
+        <p class="sheet__sub">
+          Search any city, anywhere. Data is fetched live from
+          <a class="inline-link" href="https://open-meteo.com" target="_blank" rel="noopener noreferrer">Open-Meteo<span class="visually-hidden"> (opens in new tab)</span></a>.
+        </p>
+      </header>
+
+      <!--
+        Search form: a real <form> so Enter submits naturally.
+        role="search" on the form gives screen readers an explicit
+        landmark for "this is the search function of the page."
+      -->
+      <form id="search-form" class="search-form" role="search" autocomplete="off">
+        <label for="city-input" class="visually-hidden">City name</label>
+        <input
+          type="text"
+          id="city-input"
+          name="city"
+          placeholder="Search a city — e.g. Vijayawada, Tokyo, London…"
+          required
+          minlength="2"
+          aria-describedby="search-hint"
+        />
+        <button type="submit" class="btn">
+          <span aria-hidden="true">🔍</span> Search
+        </button>
+      </form>
+      <p id="search-hint" class="hint">Try a city, or "City, Country" if the name is shared by multiple places.</p>
+
+      <!--
+        Unit toggle: a true radio group (not just buttons), since
+        Celsius/Fahrenheit is a mutually-exclusive choice, exactly
+        what radio inputs model. Visually styled as a pill toggle
+        but semantically a fieldset/radio group throughout.
+      -->
+      <fieldset class="unit-toggle">
+        <legend class="visually-hidden">Temperature unit</legend>
+        <div class="unit-toggle__row">
+          <input type="radio" id="unit-celsius" name="unit" value="celsius" checked />
+          <label for="unit-celsius">°C</label>
+          <input type="radio" id="unit-fahrenheit" name="unit" value="fahrenheit" />
+          <label for="unit-fahrenheit">°F</label>
+        </div>
+      </fieldset>
+
+      <!--
+        Status region: every state the app can be in (idle, loading,
+        error, empty/no-results) renders here as plain readable text,
+        in addition to whatever visual treatment the state gets.
+        aria-live="polite" means screen reader users are told when
+        a search starts loading and when it resolves, without
+        needing to navigate back to this region manually.
+      -->
+      <p id="status-message" class="status-message" role="status" aria-live="polite"></p>
+
+      <!--
+        Results region: hidden via the `hidden` attribute until a
+        successful search populates it, rather than being deleted
+        and recreated — toggling `hidden` is simpler and avoids
+        re-running the considerable amount of DOM-building logic
+        unnecessarily.
+      -->
+      <section id="results" class="results" hidden aria-labelledby="results-heading">
+        <h2 id="results-heading" class="visually-hidden">Current weather results</h2>
+
+        <div class="current">
+          <div class="current__place">
+            <p class="current__city" id="result-city"></p>
+            <p class="current__meta" id="result-meta"></p>
+          </div>
+          <div class="current__headline">
+            <p class="current__temp" id="result-temp"></p>
+            <p class="current__condition" id="result-condition"></p>
+          </div>
+        </div>
+
+        <dl class="metrics" id="result-metrics">
+          <!-- metric rows are created dynamically by app.js -->
+        </dl>
+
+        <h3 class="forecast__heading">Next few days</h3>
+        <ul class="forecast" id="result-forecast" role="list">
+          <!-- forecast day cards are created dynamically by app.js -->
+        </ul>
+
+        <p class="attribution">
+          Weather data by <a class="inline-link" href="https://open-meteo.com" target="_blank" rel="noopener noreferrer">Open-Meteo.com<span class="visually-hidden"> (opens in new tab)</span></a>, CC BY 4.0.
+        </p>
+      </section>
+    </div>
+
+    <!-- Template for a single day in the forecast strip -->
+    <template id="forecast-day-template">
+      <li class="forecast__day">
+        <p class="forecast__day-name"></p>
+        <p class="forecast__day-icon" aria-hidden="true"></p>
+        <p class="forecast__day-condition"></p>
+        <p class="forecast__day-range">
+          <span class="forecast__day-high"></span>
+          <span class="forecast__day-low"></span>
+        </p>
+      </li>
+    </template>
+
+    <!-- Template for a single metric in the current-conditions grid -->
+    <template id="metric-template">
+      <div class="metric">
+        <dt class="metric__label"></dt>
+        <dd class="metric__value"></dd>
+      </div>
+    </template>
+  </main>
+
+  <script src="assets/js/weather-api.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>

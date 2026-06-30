@@ -1,0 +1,416 @@
+/* =========================================================
+   DESIGN TOKENS — shared family with the portfolio/todo-app
+   ========================================================= */
+:root {
+  --color-ink: #0e1116;
+  --color-paper: #f7f5f0;
+  --color-paper-dim: #efece4;
+  --color-signal: #3d5aff;
+  --color-signal-dark: #2a3fc0;
+  --color-stone: #6f6a5d;
+  --color-stone-light: #8a8578;
+  --color-border: #d8d3c6;
+  --color-danger: #c2401f;
+  --color-surface: #ffffff;
+  --color-stamp: #b8392f;
+
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+
+  --step--1: clamp(0.83rem, 0.8rem + 0.1vw, 0.9rem);
+  --step-0: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
+  --step-1: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+  --step-2: clamp(1.6rem, 1.4rem + 0.8vw, 2.1rem);
+  --step-3: clamp(2.1rem, 1.8rem + 1.4vw, 3rem);
+  --step-temp: clamp(2.6rem, 2.2rem + 2vw, 3.6rem);
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+
+  --radius: 3px;
+  --motion-fast: 160ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: var(--space-4) var(--space-2) var(--space-5);
+}
+button { font: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--color-signal);
+  outline-offset: 3px;
+  border-radius: var(--radius);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-2);
+  top: -3rem;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  z-index: 100;
+  transition: top var(--motion-fast);
+}
+.skip-link:focus { top: var(--space-2); }
+
+a.inline-link {
+  color: var(--color-signal-dark);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+}
+a.inline-link:hover { color: var(--color-signal); }
+
+/* =========================================================
+   THE SHEET
+   ========================================================= */
+main {
+  width: 100%;
+  max-width: 40rem;
+}
+
+.sheet {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: var(--space-3);
+  position: relative;
+  box-shadow: 0 24px 48px -24px rgba(14, 17, 22, 0.25);
+}
+.sheet::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background: var(--color-stamp);
+  border-radius: 4px 0 0 4px;
+}
+
+@media (min-width: 600px) {
+  .sheet { padding: var(--space-4); }
+}
+
+.sheet__head { margin-bottom: var(--space-3); }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+  margin: 0 0 0.25rem;
+}
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+  line-height: 1.1;
+}
+.sheet__sub {
+  color: var(--color-stone);
+  font-size: var(--step--1);
+  margin: 0;
+}
+
+/* =========================================================
+   SEARCH FORM — Flexbox row
+   ========================================================= */
+.search-form {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+.search-form input[type="text"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  padding: 0.7rem 0.2rem;
+  border: none;
+  border-bottom: 1.5px solid var(--color-border);
+  background: transparent;
+  color: var(--color-ink);
+}
+.search-form input[type="text"]:focus-visible {
+  border-bottom-color: var(--color-signal);
+  border-bottom-width: 2.5px;
+  outline-offset: 2px;
+}
+.search-form input::placeholder { color: var(--color-stone-light); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  border: 1.5px solid var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--motion-fast);
+  white-space: nowrap;
+}
+.btn:hover { background: var(--color-signal-dark); border-color: var(--color-signal-dark); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.hint {
+  font-size: 0.78rem;
+  color: var(--color-stone-light);
+  margin: 0 0 var(--space-3);
+}
+
+/* =========================================================
+   UNIT TOGGLE — Flexbox pill group built from real radios
+   ========================================================= */
+.unit-toggle {
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--space-3);
+}
+.unit-toggle__row {
+  display: inline-flex;
+  border: 1.5px solid var(--color-border);
+  border-radius: 999px;
+  overflow: hidden;
+  width: fit-content;
+}
+.unit-toggle input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.unit-toggle label {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  color: var(--color-stone);
+  transition: background var(--motion-fast), color var(--motion-fast);
+}
+.unit-toggle input[type="radio"]:checked + label {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+.unit-toggle input[type="radio"]:focus-visible + label {
+  outline: 3px solid var(--color-signal);
+  outline-offset: -3px;
+}
+
+/* =========================================================
+   STATUS MESSAGE — shared region for loading/error/empty states
+   ========================================================= */
+.status-message {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  margin: 0 0 var(--space-3);
+  display: none;
+}
+.status-message[data-state="loading"] {
+  display: block;
+  color: var(--color-stone);
+  background: var(--color-paper-dim);
+}
+.status-message[data-state="error"] {
+  display: block;
+  color: var(--color-danger);
+  background: #fbe9e4;
+  border-left: 3px solid var(--color-danger);
+}
+.status-message[data-state="empty"] {
+  display: block;
+  color: var(--color-stone);
+  background: var(--color-paper-dim);
+}
+
+/* =========================================================
+   RESULTS — current conditions
+   ========================================================= */
+.results { margin-top: var(--space-2); }
+
+.current {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-2);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px dashed var(--color-border);
+  margin-bottom: var(--space-3);
+}
+.current__city {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 600;
+  margin: 0;
+}
+.current__meta {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--color-stone);
+  margin: 0.2rem 0 0;
+}
+.current__headline { text-align: right; }
+.current__temp {
+  font-family: var(--font-display);
+  font-size: var(--step-temp);
+  font-weight: 600;
+  line-height: 1;
+  margin: 0;
+}
+.current__condition {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--color-stone);
+  margin: 0.3rem 0 0;
+}
+
+/* =========================================================
+   METRICS — CSS Grid, a real 2D layout: rows of label/value
+   pairs that reflow from 2 columns to 4 as space allows. <dl>
+   used semantically (term/description pairs), styled as cards.
+   ========================================================= */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin: 0 0 var(--space-4);
+}
+@media (min-width: 480px) {
+  .metrics { grid-template-columns: repeat(4, 1fr); }
+}
+.metric {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.65rem 0.8rem;
+  background: var(--color-paper-dim);
+}
+.metric__label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+  margin: 0 0 0.25rem;
+}
+.metric__value {
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  font-weight: 600;
+  margin: 0;
+}
+
+/* =========================================================
+   FORECAST STRIP — Flexbox row, scrolls on narrow screens
+   ========================================================= */
+.forecast__heading {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-stone);
+  margin: 0 0 var(--space-2);
+  font-weight: 600;
+}
+.forecast {
+  list-style: none;
+  display: flex;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0 0 var(--space-2);
+  overflow-x: auto;
+  padding-bottom: 0.4rem;
+}
+.forecast__day {
+  flex: 0 0 6rem;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.7rem 0.4rem;
+  background: var(--color-surface);
+}
+.forecast__day-name {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--color-stone);
+  margin: 0 0 0.4rem;
+}
+.forecast__day-icon {
+  font-size: 1.5rem;
+  margin: 0 0 0.3rem;
+  line-height: 1;
+}
+.forecast__day-condition {
+  font-size: 0.68rem;
+  color: var(--color-stone);
+  margin: 0 0 0.4rem;
+  min-height: 1.6em;
+}
+.forecast__day-range {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+}
+.forecast__day-high { font-weight: 600; }
+.forecast__day-low { color: var(--color-stone); }
+
+.attribution {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-stone-light);
+  margin: var(--space-2) 0 0;
+}
+
+/* =========================================================
+   RESPONSIVE — mobile-first base above; more room at desktop
+   ========================================================= */
+@media (min-width: 600px) {
+  body { padding-top: var(--space-5); }
+  h1 { font-size: var(--step-3); }
+}
