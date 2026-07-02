@@ -1,0 +1,18 @@
+{
+  "name": "powerleger-catalog",
+  "version": "1.0.0",
+  "description": "PowerLedger — an e-commerce product catalog SPA built with vanilla ES modules, History API routing, and no framework.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node test-harness.mjs",
+    "dev": "npx --yes serve . --no-clipboard --listen 3000"
+  },
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "terser": "^5.39.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

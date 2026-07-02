@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: powerleger-catalog
+    env: static
+    buildCommand: node build.mjs
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

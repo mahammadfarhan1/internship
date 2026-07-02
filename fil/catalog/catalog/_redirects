@@ -1,0 +1,6 @@
+# Catch-all rewrite: serve index.html for every path that isn't a
+# real file, so the History API router handles /product/:id etc.
+# The "!" prefix means Netlify applies this only when no actual file
+# matches first (so /src/assets/img/inverter-1.jpg still serves the
+# real file, not index.html).
+/*    /index.html   200

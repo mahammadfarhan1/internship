@@ -1,0 +1,1 @@
+export default function n(n){n.innerHTML='\n    <section aria-labelledby="notfound-heading">\n      <p class="eyebrow">404</p>\n      <h1 id="notfound-heading">Page not found</h1>\n      <p>There\'s nothing at this address. Head back to the catalog.</p>\n      <p><a class="inline-link" href="/">Back to the catalog &rarr;</a></p>\n    </section>\n  '}
